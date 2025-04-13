@@ -1,2 +1,8 @@
 .Rproj.user
 .Rhistory
+
+# Ignore raw PUMF data file (too large for GitHub)
+data-raw/pumf_cchs.csv
+
+# Ignore manually exported CSV outputs
+data-csv/
