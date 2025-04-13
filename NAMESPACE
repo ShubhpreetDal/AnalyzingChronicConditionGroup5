@@ -2,6 +2,9 @@
 
 export(analyze_underage_targets)
 export(decode_cchs_values)
+export(describe_categorical)
 export(drop_underage_group)
+export(generate_barplots)
 export(load_cchs_data)
+export(transform_categorical)
 export(value_mappings)
