@@ -1,0 +1,19 @@
+Package: AnalyzingChronicConditionGroup5
+Title: Analyzing Chronic Condition 
+Version: 0.0.0.9000
+Authors@R: 
+    c(
+      person("Shubhpreet", "", email = "shubhpreet@dal.ca", role = c("aut", "cre")),
+      person("Jay", "Mewada", email = "jy260518@dal.ca", role = "aut"),
+      person("Parabhuda", "Deore", email = "Pr701316@dal.ca", role = "aut")
+    )
+Description: Provides tools and workflows to analyze and model chronic health
+    risks using data from the Canadian Community Health Survey (CCHS 2019–2020).
+    The package supports predicting chronic conditions (high blood pressure,
+    diabetes, cardiovascular disease) and exploring relationships between
+    self-perceived health metrics and disease prevalence across demographic groups.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
