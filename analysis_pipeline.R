@@ -63,3 +63,31 @@ generate_barplots(transformed_data, output_dir = "Plots/After_Transformation")
 
 message("Phase 2 complete: Categorical transformation and descriptive stats done.")
 
+
+
+# -------------------------------
+# Phase 3: Final Cleanup of Sparse & Ambiguous Levels
+# -------------------------------
+
+source("R/final_transform.R")
+
+# Load transformed_data saved in .rda
+load("data/transformed_data.rda")
+
+# Step 1: Apply final transformation rules (e.g., rare level merges, unknown → mode)
+final_cleaned_data <- final_transform(transformed_data)
+
+# Step 2: Save final dataset as CSV and internal RDA
+write.csv(final_cleaned_data, "data-csv/final_cleaned_data.csv", row.names = FALSE)
+usethis::use_data(final_cleaned_data, overwrite = TRUE)
+
+# Step 3: Generate descriptive stats for final cleaned data
+final_stats <- describe_categorical(final_cleaned_data)
+write.csv(final_stats, "Statistics/final_variable_summary.csv", row.names = FALSE)
+
+# Step 4: Generate final visualization
+generate_barplots(final_cleaned_data, output_dir = "Plots/Final_Visualization")
+
+message("Phase 3 complete: Final cleanup, saving, and visualization done.")
+
+
