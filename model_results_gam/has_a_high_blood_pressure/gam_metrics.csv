@@ -1,0 +1,2 @@
+Target,Model,Accuracy_Test,Precision_Yes,Recall_Yes,F1_Yes,Precision_No,Recall_No,F1_No,F1_Macro_Test
+has_a_high_blood_pressure,GAM,0.7637,0.6237,0.4309,0.5096,0.798,0.8964,0.8443,0.677

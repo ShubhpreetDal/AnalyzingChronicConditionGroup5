@@ -137,6 +137,61 @@ run_baseline_models(model2_df, "has_diabetes")
 run_baseline_models(model3_df, "cardiovascular_condition_heart_disease_or_stroke")
 
 
+# -------------------------------
+# Phase 6: Final Logistic Regression Model & Interpretation
+# -------------------------------
+
+source("R/train_final_logreg.R")
+source("R/plot_logreg_coefficients.R")
+
+# Load final dataset
+data("final_cleaned_data")
+final_cleaned_data <- janitor::clean_names(final_cleaned_data)
+
+# Create model-specific datasets
+model1_df <- final_cleaned_data %>% select(-has_diabetes, -cardiovascular_condition_heart_disease_or_stroke, -high_blood_pressure_took_medication_1_month)
+model2_df <- final_cleaned_data %>% select(-cardiovascular_condition_heart_disease_or_stroke)
+model3_df <- final_cleaned_data
+
+# Create output directories if they don't exist
+dir.create("logreg_output", showWarnings = FALSE)
+dir.create("logreg_output/models", showWarnings = FALSE, recursive = TRUE)
+dir.create("logreg_output/test_sets", showWarnings = FALSE, recursive = TRUE)
+dir.create("logreg_output/coefficients", showWarnings = FALSE, recursive = TRUE)
+dir.create("logreg_output/plots", showWarnings = FALSE, recursive = TRUE)
+
+
+# Train and save regularized logistic regression models
+train_and_save_model(model1_df, "has_a_high_blood_pressure",
+                     model_path = "logreg_output/models/model_highbp.rds",
+                     test_csv_path = "logreg_output/test_sets/test_highbp.csv")
+
+train_and_save_model(model2_df, "has_diabetes",
+                     model_path = "logreg_output/models/model_diabetes.rds",
+                     test_csv_path = "logreg_output/test_sets/test_diabetes.csv")
+
+train_and_save_model(model3_df, "cardiovascular_condition_heart_disease_or_stroke",
+                     model_path = "logreg_output/models/model_cardio.rds",
+                     test_csv_path = "logreg_output/test_sets/test_cardio.csv")
+
+# Extract and plot coefficients
+extract_logistic_coefficients("logreg_output/models/model_highbp.rds",
+                              output_csv = "logreg_output/coefficients/logreg_coefficients_highbp.csv",
+                              plot_title = "High BP - Top Logistic Features",
+                              plot_path = "logreg_output/plots/logreg_plot_highbp.png")
+
+extract_logistic_coefficients("logreg_output/models/model_diabetes.rds",
+                              output_csv = "logreg_output/coefficients/logreg_coefficients_diabetes.csv",
+                              plot_title = "Diabetes - Top Logistic Features",
+                              plot_path = "logreg_output/plots/logreg_plot_diabetes.png")
+
+extract_logistic_coefficients("logreg_output/models/model_cardio.rds",
+                              output_csv = "logreg_output/coefficients/logreg_coefficients_cardio.csv",
+                              plot_title = "Cardio Risk - Top Logistic Features",
+                              plot_path = "logreg_output/plots/logreg_plot_cardio.png")
+
+
+
 
 
 
