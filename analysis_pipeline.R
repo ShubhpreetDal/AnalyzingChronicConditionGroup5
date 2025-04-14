@@ -91,3 +91,21 @@ generate_barplots(final_cleaned_data, output_dir = "Plots/Final_Visualization")
 message("Phase 3 complete: Final cleanup, saving, and visualization done.")
 
 
+# -------------------------------
+# Phase 4: Bivariate Analysis
+# -------------------------------
+source("R/bivariate_analysis.R")
+
+targets <- c(
+  "Has a high blood pressure",
+  "Has diabetes",
+  "Cardiovascular condition (Heart disease or stroke)"
+)
+
+for (target in targets) {
+  run_bivariate_analysis(final_cleaned_data, target)
+}
+
+message("Phase 4 complete: Bivariate chi-square analysis and plots generated.")
+
+
