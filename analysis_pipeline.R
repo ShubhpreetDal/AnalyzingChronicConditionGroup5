@@ -108,4 +108,43 @@ for (target in targets) {
 
 message("Phase 4 complete: Bivariate chi-square analysis and plots generated.")
 
+# -------------------------------
+# Phase 5: Baseline Modeling (LogReg, Decision Tree)
+# -------------------------------
+
+
+# Load modeling function
+source("R/baseline_models.R")
+
+# Load final dataset
+data("final_cleaned_data")
+final_cleaned_data <- janitor::clean_names(final_cleaned_data)
+
+# Prepare model-specific datasets
+model1_df <- final_cleaned_data %>%
+  select(-has_diabetes,
+         -cardiovascular_condition_heart_disease_or_stroke,
+         -high_blood_pressure_took_medication_1_month)
+
+model2_df <- final_cleaned_data %>%
+  select(-cardiovascular_condition_heart_disease_or_stroke)
+
+model3_df <- final_cleaned_data
+
+# Run baseline models
+run_baseline_models(model1_df, "has_a_high_blood_pressure")
+run_baseline_models(model2_df, "has_diabetes")
+run_baseline_models(model3_df, "cardiovascular_condition_heart_disease_or_stroke")
+
+
+
+
+
+
+
+
+
+
+
+
 
