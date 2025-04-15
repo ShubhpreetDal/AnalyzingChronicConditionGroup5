@@ -1,2 +1,2 @@
 Target,Model,Accuracy_Test,Precision_Yes,Recall_Yes,F1_Yes,Precision_No,Recall_No,F1_No,F1_Macro_Test
-has_a_high_blood_pressure,GAM,0.9237,0.8281,0.9241,0.8735,0.9683,0.9235,0.9454,0.9094
+has_diabetes,GAM,0.8983,NA,0,NA,0.8983,1,0.9464,0.9464

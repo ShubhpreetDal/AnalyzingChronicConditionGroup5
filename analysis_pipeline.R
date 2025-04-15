@@ -190,14 +190,25 @@ extract_logistic_coefficients("logreg_output/models/model_cardio.rds",
                               plot_title = "Cardio Risk - Top Logistic Features",
                               plot_path = "logreg_output/plots/logreg_plot_cardio.png")
 
+# -------------------------------
+# Phase 7: GAM on Top Features
+# -------------------------------
 
+source("R/gam_top_features.R")
 
+# Reload cleaned dataset
+data("final_cleaned_data")
+final_cleaned_data <- janitor::clean_names(final_cleaned_data)
 
+# Prepare model-specific datasets
+model1_df <- final_cleaned_data %>% select(-has_diabetes, -cardiovascular_condition_heart_disease_or_stroke)
+model2_df <- final_cleaned_data %>% select(-cardiovascular_condition_heart_disease_or_stroke)
+model3_df <- final_cleaned_data
 
-
-
-
-
+# Run GAM models with top features
+run_gam_on_top_features(model1_df, "has_a_high_blood_pressure")
+run_gam_on_top_features(model2_df, "has_diabetes")
+run_gam_on_top_features(model3_df, "cardiovascular_condition_heart_disease_or_stroke")
 
 
 

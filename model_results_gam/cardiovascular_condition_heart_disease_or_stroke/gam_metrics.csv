@@ -1,0 +1,2 @@
+Target,Model,Accuracy_Test,Precision_Yes,Recall_Yes,F1_Yes,Precision_No,Recall_No,F1_No,F1_Macro_Test
+cardiovascular_condition_heart_disease_or_stroke,GAM,0.8976,0.5558,0.107,0.1795,0.9047,0.99,0.9454,0.5625
