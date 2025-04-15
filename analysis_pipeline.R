@@ -234,4 +234,31 @@ pred_files <- list(
 run_roc_auc_phase(pred_files, output_dir = "logreg_output/roc_auc")
 
 
+# -------------------------------
+# Phase 9: Perceived vs Actual Health Analysis
+# -------------------------------
+
+source("R/perceived_health.R")
+
+# Load cleaned dataset
+data("final_cleaned_data")
+final_cleaned_data <- janitor::clean_names(final_cleaned_data)
+
+# Run perceived health analysis
+run_perceived_health_analysis(
+  df = final_cleaned_data,
+  perceived_col = "perceived_health",
+  output_dir = "perceived_health_plots/general"
+)
+
+# Run perceived mental health analysis
+run_perceived_health_analysis(
+  df = final_cleaned_data,
+  perceived_col = "perceived_mental_health",
+  output_dir = "perceived_health_plots/mental"
+)
+
+message("Phase 9 complete: Perceived health vs chronic condition analysis done.")
+
+
 

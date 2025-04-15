@@ -1,0 +1,4 @@
+Target,Perceived,Chi_Square,p_value,Significant
+has_a_high_blood_pressure,perceived_health,5689.695,0,Yes
+has_diabetes,perceived_health,5158.724,0,Yes
+cardiovascular_condition_heart_disease_or_stroke,perceived_health,6927.574,0,Yes
