@@ -212,5 +212,26 @@ run_gam_on_top_features(model3_df, "cardiovascular_condition_heart_disease_or_st
 
 
 
+# -------------------------------
+# Phase 8: ROC-AUC Evaluation
+# -------------------------------
+
+# Load required functions
+source("R/generate_predictions.R")  # Ensures predictions exist
+source("R/roc_auc.R")               # Plots ROC-AUC curves
+
+# Step 1: Generate prediction CSVs if not already present
+generate_all_logreg_predictions()
+
+# Step 2: Define prediction file paths
+pred_files <- list(
+  "High BP"   = "logreg_output/predictions/predictions_highbp.csv",
+  "Diabetes"  = "logreg_output/predictions/predictions_diabetes.csv",
+  "Cardio"    = "logreg_output/predictions/predictions_cardio.csv"
+)
+
+# Step 3: Run ROC-AUC visualization and evaluation
+run_roc_auc_phase(pred_files, output_dir = "logreg_output/roc_auc")
+
 
 
