@@ -4,7 +4,10 @@
 \alias{generate_all_logreg_predictions}
 \title{Generate prediction CSVs from saved logistic regression models}
 \usage{
-generate_all_logreg_predictions()
+generate_all_logreg_predictions(base_path = "")
+}
+\arguments{
+\item{base_path}{Optional prefix for relative paths. Use "../" in vignette context.}
 }
 \description{
 This utility ensures predictions are available for all targets.

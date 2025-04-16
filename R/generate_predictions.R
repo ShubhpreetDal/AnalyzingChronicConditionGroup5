@@ -3,35 +3,37 @@
 #' This utility ensures predictions are available for all targets.
 #' Run this before ROC-AUC evaluation if prediction CSVs are missing.
 #'
+#' @param base_path Optional prefix for relative paths. Use "../" in vignette context.
 #' @export
-generate_all_logreg_predictions <- function() {
+generate_all_logreg_predictions <- function(base_path = "") {
   library(tidymodels)
   library(readr)
   library(dplyr)
 
-  dir.create("logreg_output/predictions", recursive = TRUE, showWarnings = FALSE)
+  output_dir <- file.path(base_path, "logreg_output/predictions")
+  dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 
   targets <- list(
     list(
       name = "High BP",
       target = "has_a_high_blood_pressure",
-      model_path = "logreg_output/models/model_highbp.rds",
-      test_path = "logreg_output/test_sets/test_highbp.csv",
-      output_path = "logreg_output/predictions/predictions_highbp.csv"
+      model_path = file.path(base_path, "logreg_output/models/model_highbp.rds"),
+      test_path = file.path(base_path, "logreg_output/test_sets/test_highbp.csv"),
+      output_path = file.path(base_path, "logreg_output/predictions/predictions_highbp.csv")
     ),
     list(
       name = "Diabetes",
       target = "has_diabetes",
-      model_path = "logreg_output/models/model_diabetes.rds",
-      test_path = "logreg_output/test_sets/test_diabetes.csv",
-      output_path = "logreg_output/predictions/predictions_diabetes.csv"
+      model_path = file.path(base_path, "logreg_output/models/model_diabetes.rds"),
+      test_path = file.path(base_path, "logreg_output/test_sets/test_diabetes.csv"),
+      output_path = file.path(base_path, "logreg_output/predictions/predictions_diabetes.csv")
     ),
     list(
       name = "Cardio",
       target = "cardiovascular_condition_heart_disease_or_stroke",
-      model_path = "logreg_output/models/model_cardio.rds",
-      test_path = "logreg_output/test_sets/test_cardio.csv",
-      output_path = "logreg_output/predictions/predictions_cardio.csv"
+      model_path = file.path(base_path, "logreg_output/models/model_cardio.rds"),
+      test_path = file.path(base_path, "logreg_output/test_sets/test_cardio.csv"),
+      output_path = file.path(base_path, "logreg_output/predictions/predictions_cardio.csv")
     )
   )
 
@@ -57,5 +59,5 @@ generate_all_logreg_predictions <- function() {
     }
   }
 
-  cat("\n All predictions ready.\n")
+  cat("\nAll predictions ready.\n")
 }

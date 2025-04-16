@@ -6,3 +6,5 @@ data-raw/pumf_cchs.csv
 
 # Ignore manually exported CSV outputs
 data-csv/
+inst/doc
+**/.quarto/
